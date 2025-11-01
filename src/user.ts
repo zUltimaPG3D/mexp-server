@@ -46,7 +46,7 @@ export class MexpSession {
         this.mapChangeTimer = setTimeout(() => {
             const user = this.getUser();
             if (!user) return;
-            user.ghost.scene = finalMap;
+            user.lastSpawnData = `${finalMap} 0 0.9 0 0`;
             user.commit();
         }, 1000 * 60 * 4);
     }
