@@ -113,17 +113,15 @@ export async function doRouting(info:RoutingInfo) {
       if (!id) return new Response("");
       
       if (id == "0") {
-        const paths:string[] = await getAllPaths("./assets/ads/");
-        
-        return new Response(paths.join("\n"));
+        return new Response((await Deno.readTextFile("./assets/ads.txt")).split("\n").join(';'));
       }
       
-      serverConsoleLog(`sending ads/${id}`);
+      serverConsoleLog(`sending ads/${id}.png`);
       
       if (id.includes("..")) return new Response("");
 
       try {
-        await Deno.lstat(`./assets/ads/${id}`)
+        await Deno.lstat(`./assets/ads/${id}.png`)
       } catch (err) {
         if (!(err instanceof Deno.errors.NotFound)) {
           throw err;
@@ -132,7 +130,7 @@ export async function doRouting(info:RoutingInfo) {
         return new Response("0");
       }
       
-      return new Response(await Deno.readFile(`./assets/ads/${id}`), {
+      return new Response(await Deno.readFile(`./assets/ads/${id}.png`), {
         status: 200,
         headers: {
           "content-type": "image/png; charset=binary",
