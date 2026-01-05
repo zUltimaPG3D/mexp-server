@@ -24,6 +24,7 @@ MineXplorer server recreation written with Deno
 - Captcha expiry times might not be 100% accurate
 - The /counter implementation is nowhere close to accurate
 - _editor does not spawn in the correct map (see todo above)
+- Banned users are not in one big txt file (`banned.txt` from annual_media)
 
 # Version Compatibility
 * `Guaranteed not working`: This version doesn't work with the server recreation.
